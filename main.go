@@ -86,14 +86,6 @@ func getPathSoftware() string {
 	return filepath.Join(usr.HomeDir, "Software")
 }
 
-func pullGitTools() {
-	repoNames := [3]string{"open-urls", "job-check-lambda-name", "job-modify-issue-name"}
-	for i := range len(repoNames) {
-		repoName := repoNames[i]
-		pullGitRepo(repoName)
-	}
-}
-
 func exists(dirPath string) bool {
 	if _, err := os.Stat(dirPath); os.IsNotExist(err) {
 		return false

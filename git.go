@@ -21,3 +21,11 @@ func pullGitRepo(repo string) {
 		run("git clone git@github.com:CarlosAMolina/" + repo + " " + repoPath)
 	}
 }
+
+func pullGitTools() {
+	repoNames := [3]string{"open-urls", "job-check-lambda-name", "job-modify-issue-name"}
+	for i := range len(repoNames) {
+		repoName := repoNames[i]
+		pullGitRepo(repoName)
+	}
+}
