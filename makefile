@@ -14,6 +14,3 @@ format:
 
 run:
 	go run .
-
-send:
-	scp cmoli-es-deploy dev:~/Software/

@@ -49,22 +49,6 @@ func deploy() {
 	convertMdToHtml()
 	modifyHtml()
 	copyMedia()
-	startDockerService()
-	stopContainer("nginx-cmoli-container")
-	removeVolume("nginx-web-content")
-	removeVolume("pandoc")
-	pullDocker("python:3.8.15-alpine3.16")
-	buildDockerCreatePandocScript()
-	createVolume("nginx-web-content")
-	createVolume("pandoc")
-	copyContentToVolumeNginx()
-	copyContentToVolumePandoc()
-	runDockerCreatePandocScript()
-	pullDockerPandoc()
-	buildDockerImagePandoc()
-	runDockerPandoc()
-	modifyHtmlDocker()
-	copyMediaToDockerVolume()
 }
 
 func exitIfError(err error) {
@@ -76,7 +60,7 @@ func exitIfError(err error) {
 
 func testLocal() {
 	deploy()
-	run("firefox " + getVolumePath("nginx-web-content") + "/index.html")
+	run("firefox " + filepath.Join(mdPath, "index.html"))
 }
 
 func getPathSoftware() string {
@@ -101,14 +85,6 @@ func exists(dirPath string) bool {
 	} else {
 		return true
 	}
-}
-
-func copyMediaToDockerVolume() {
-	volumePath := getVolumePath("nginx-web-content")
-	run("cp -r ~/Software/cmoli-media-content/* " + volumePath)
-	videoVolumePath := filepath.Join(volumePath, "felices-fiestas/src/movie.mp4")
-	run("rm " + videoVolumePath)
-	run("ln -s ~/Software/cmoli-media-content/felices-fiestas/src/movie.mp4 " + videoVolumePath)
 }
 
 func copyMedia() {

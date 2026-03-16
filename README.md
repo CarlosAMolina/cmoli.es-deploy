@@ -17,37 +17,8 @@ The media content (images, videos, etc.) must be in the `$HOME/Software/cmoli-me
 
 ### Required software
 
-- [Docker](https://www.docker.com/). You need to have Docker installed and run it as [rootless](https://docs.docker.com/engine/security/rootless/).
 - [Git](https://git-scm.com/).
 - [Go](https://go.dev/).
-
-### VPS configuration
-
-First, compile the binary:
-
-```bash
-make build
-```
-
-Send the binary to your VPS:
-
-```bash
-make send
-```
-
-You can create an alias in your VPS `~/.bashrc`:
-
-```bash
-alias deploy='$HOME/Software/cmoli-es-deploy'
-```
-
-Run in the VPS:
-
-```bash
-deploy
-```
-
-## Run
 
 ```bash
 make run

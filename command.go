@@ -17,9 +17,3 @@ func run(command string) []byte {
 	}
 	return out
 }
-
-func runsOk(command string) bool {
-	fmt.Println(command)
-	err := exec.Command("bash", "-c", command).Run()
-	return err == nil
-}
