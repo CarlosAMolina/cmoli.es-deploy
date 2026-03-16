@@ -1,3 +1,13 @@
+## [1.2.0] - TODO
+
+### Changed
+
+- Replace Docker with Go to convert md to html.
+
+### Removed
+
+- Docker is not required.
+
 ## [1.1.0] - 20260211
 
 ### Changed
