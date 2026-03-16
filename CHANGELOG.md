@@ -3,6 +3,8 @@
 ### Changed
 
 - Replace Docker with Go to convert md to html.
+- Menu order.
+- Test local. Omit git pull.
 
 ### Removed
 

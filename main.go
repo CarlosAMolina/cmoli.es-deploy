@@ -15,12 +15,12 @@ func main() {
 		fmt.Scan(&choice)
 		switch choice {
 		case "1":
+			testLocal()
+			os.Exit(0)
+		case "2":
 			fmt.Println("Starting full deployment")
 			deploy()
 			fmt.Println("Deployed! :)")
-			os.Exit(0)
-		case "2":
-			testLocal()
 			os.Exit(0)
 		case "e":
 			fmt.Println("Bye!")
@@ -35,14 +35,23 @@ func main() {
 
 func showHelp() {
 	fmt.Println("Please select an option:")
-	fmt.Println("1. Deploy")
-	fmt.Println("2. Testing local")
+	fmt.Println("1. Testing local")
+	fmt.Println("2. Deploy")
 	fmt.Println("e. Exit")
 	fmt.Println("h. Show help")
 }
 
+func testLocal() {
+	createContent()
+	run("firefox " + filepath.Join(mdPath, "index.html"))
+}
+
 func deploy() {
 	pullGitRepos()
+	createContent()
+}
+
+func createContent() {
 	err := prepareMdContentToConvert()
 	exitIfError(err)
 	convertMdToHtml()
@@ -55,11 +64,6 @@ func exitIfError(err error) {
 		fmt.Fprintf(os.Stderr, "unexpected error %v\n", err)
 		os.Exit(1)
 	}
-}
-
-func testLocal() {
-	deploy()
-	run("firefox " + filepath.Join(mdPath, "index.html"))
 }
 
 func copyMedia() {
