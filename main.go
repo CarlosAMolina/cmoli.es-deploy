@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"os"
-	"os/user"
 	"path/filepath"
 )
 
@@ -61,30 +60,6 @@ func exitIfError(err error) {
 func testLocal() {
 	deploy()
 	run("firefox " + filepath.Join(mdPath, "index.html"))
-}
-
-func getPathSoftware() string {
-	usr, err := user.Current()
-	if err != nil {
-		panic(err)
-	}
-	return filepath.Join(usr.HomeDir, "Software")
-}
-
-func getCurrentPath() string {
-	currentPath, err := os.Getwd()
-	if err != nil {
-		panic(err)
-	}
-	return currentPath
-}
-
-func exists(dirPath string) bool {
-	if _, err := os.Stat(dirPath); os.IsNotExist(err) {
-		return false
-	} else {
-		return true
-	}
 }
 
 func copyMedia() {
