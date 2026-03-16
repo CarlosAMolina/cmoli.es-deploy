@@ -1,8 +1,8 @@
-## [1.2.0] - TODO
+## [1.2.0] - 20260317
 
 ### Changed
 
-- Replace Docker with Go to convert md to html.
+- Convert md to html. Replace Pandoc Docker with the Go project md-to-html-go.
 - Menu order.
 - Test local. Omit git pull.
 
