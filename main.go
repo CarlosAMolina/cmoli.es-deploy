@@ -51,7 +51,6 @@ func deploy() {
 	err := prepareMdContentToConvert()
 	exitIfError(err)
 	convertMdToHtml()
-	// Create Pandoc script for files
 	pullDocker("python:3.8.15-alpine3.16")
 	buildDockerCreatePandocScript()
 	createVolume("nginx-web-content")
