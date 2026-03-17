@@ -29,3 +29,21 @@ func exists(dirPath string) bool {
 		return true
 	}
 }
+
+func setMedia() error {
+	return createSymlinksRecursive(mediaContentPath, mdPath)
+}
+
+func createSymlinksRecursive(srcRoot, dstRoot string) error {
+	return filepath.Walk(srcRoot, func(srcPath string, info os.FileInfo, err error) error {
+		if err != nil {
+			return err
+		}
+		relPath, err := filepath.Rel(srcRoot, srcPath)
+		if err != nil {
+			return err
+		}
+		dstPath := filepath.Join(dstRoot, relPath)
+		return os.Symlink(srcPath, dstPath)
+	})
+}

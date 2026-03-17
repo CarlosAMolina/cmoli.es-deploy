@@ -7,6 +7,7 @@ TODO: git tag -a 1.2.0 -m "Replace Pandoc Docker with the Go project md-to-html-
 - Convert md to html. Replace Pandoc Docker with the Go project [md-to-html-go](https://github.com/CarlosAMolina/md-to-html-go).
 - Menu order.
 - Test local. Omit git pull.
+- Media. Create symlinks instead of copy media.
 
 ### Removed
 

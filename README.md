@@ -13,7 +13,9 @@ Project to automate the creation of the [cmoli.es](https://cmoli.es) website con
 
 ### Media content
 
-The media content (images, videos, etc.) must be in the `$HOME/Software/cmoli-media-content` folder using the same paths as the markdown web files. This is required because the media content will be copied from this path to the web content path with the `cp -r` command.
+Multimedia content (images, videos, etc.) must be located in the `$HOME/Software/cmoli-media-content` folder on both the computer where the web content will be generated and the VPS server from which that content will be served. Otherwise, the symbolic links generated will not work.
+
+The `cmoli-media-content` folder must use the same paths as the markdown web files; otherwise, the symlinks won't be created correctly.
 
 ### Required software
 

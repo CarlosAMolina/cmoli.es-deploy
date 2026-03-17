@@ -56,7 +56,8 @@ func createContent() {
 	exitIfError(err)
 	convertMdToHtml()
 	modifyHtml()
-	setMedia()
+	err = setMedia()
+	exitIfError(err)
 }
 
 func exitIfError(err error) {
@@ -64,11 +65,4 @@ func exitIfError(err error) {
 		fmt.Fprintf(os.Stderr, "unexpected error %v\n", err)
 		os.Exit(1)
 	}
-}
-
-func setMedia() {
-	run("cp -r ~/Software/cmoli-media-content/* " + mdPath)
-	videoVolumePath := filepath.Join(mdPath, "felices-fiestas/src/movie.mp4")
-	run("rm " + videoVolumePath)
-	run("ln -s ~/Software/cmoli-media-content/felices-fiestas/src/movie.mp4 " + videoVolumePath)
 }
