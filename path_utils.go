@@ -37,6 +37,9 @@ func setMedia() error {
 
 func createSymlinksRecursive(srcRoot, dstRoot string) error {
 	return filepath.Walk(srcRoot, func(srcPath string, info os.FileInfo, err error) error {
+		if info.IsDir() {
+			return nil
+		}
 		if err != nil {
 			return err
 		}
@@ -45,9 +48,6 @@ func createSymlinksRecursive(srcRoot, dstRoot string) error {
 			return err
 		}
 		dstPath := filepath.Join(dstRoot, relPath)
-		if info.IsDir() {
-			return os.MkdirAll(dstPath, info.Mode())
-		}
 		fmt.Printf("symlink %s -> %s\n", srcPath, dstPath)
 		return os.Symlink(srcPath, dstPath)
 	})
