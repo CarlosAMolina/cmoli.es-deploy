@@ -55,7 +55,8 @@ func createContent() {
 	err := prepareMdContentToConvert()
 	exitIfError(err)
 	convertMdToHtml()
-	modifyHtml()
+	err = modifyHtml()
+	exitIfError(err)
 	err = setMedia()
 	exitIfError(err)
 }

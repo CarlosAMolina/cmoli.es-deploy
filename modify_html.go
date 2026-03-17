@@ -1,6 +1,16 @@
 package main
 
-func modifyHtml() {
+import (
+	"os"
+	"strings"
+)
+
+func modifyHtml() error {
 	path := mdPath + "/projects/rust-vs-other-languages/02-results-summary.html"
-	run("sed -i 's/<table>/<table class=\"center\">/g' " + path)
+	content, err := os.ReadFile(path)
+	if err != nil {
+		return err
+	}
+	modified := strings.ReplaceAll(string(content), "<table>", "<table class=\"center\">")
+	return os.WriteFile(path, []byte(modified), 0644)
 }
