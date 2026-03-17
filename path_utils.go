@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"os"
 	"os/user"
 	"path/filepath"
@@ -44,6 +45,10 @@ func createSymlinksRecursive(srcRoot, dstRoot string) error {
 			return err
 		}
 		dstPath := filepath.Join(dstRoot, relPath)
+		if info.IsDir() {
+			return os.MkdirAll(dstPath, info.Mode())
+		}
+		fmt.Printf("symlink %s -> %s\n", srcPath, dstPath)
 		return os.Symlink(srcPath, dstPath)
 	})
 }
