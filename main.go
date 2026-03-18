@@ -49,6 +49,7 @@ func testLocal() {
 func deploy() {
 	pullGitRepos()
 	createContent()
+	sendToVps()
 }
 
 func createContent() {
