@@ -3,6 +3,10 @@
 TODO: git tag -a 1.2.0 -m "Replace Pandoc Docker with the Go project md-to-html-go"
 TODO. i've changed modifyHtml, check the result is the expected one
 
+### Added
+
+- Send files to the VPS.
+
 ### Changed
 
 - Convert md to html. Replace Pandoc Docker with the Go project [md-to-html-go](https://github.com/CarlosAMolina/md-to-html-go).

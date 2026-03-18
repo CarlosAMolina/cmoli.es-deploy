@@ -1,11 +1,35 @@
 package main
 
-import "os"
-
-const (
-	mdPath      = "/tmp/www"
-	vpsAlias    = "TODO"
-	vpsDestPath = "~/Software/www/"
+import (
+	"encoding/json"
+	"os"
+	"path/filepath"
 )
 
-var mediaContentPath = os.ExpandEnv("$HOME/Software/cmoli-media-content")
+var (
+	cfg              = loadDeployConfig()
+	mdPath           = cfg.MdPath
+	vpsAlias         = cfg.VpsAlias
+	vpsDestPath      = cfg.VpsDestPath
+	mediaContentPath = cfg.MediaContentPath
+)
+
+type deployConfig struct {
+	MdPath           string `json:"md_path"`
+	VpsAlias         string `json:"vps_alias"`
+	VpsDestPath      string `json:"vps_dest_path"`
+	MediaContentPath string `json:"media_content_path"`
+}
+
+func loadDeployConfig() deployConfig {
+	configPath := filepath.Join(getCurrentPath(), "config-deploy.json")
+	data, err := os.ReadFile(configPath)
+	if err != nil {
+		panic(err)
+	}
+	var config deployConfig
+	if err := json.Unmarshal(data, &config); err != nil {
+		panic(err)
+	}
+	return config
+}
