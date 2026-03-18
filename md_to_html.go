@@ -6,30 +6,30 @@ import (
 )
 
 func prepareMdContentToConvert() error {
-	err := os.RemoveAll(mdPath)
+	err := os.RemoveAll(cfg.MdPath)
 	if err != nil {
 		return err
 	}
-	err = os.Mkdir(mdPath, 0775)
+	err = os.Mkdir(cfg.MdPath, 0775)
 	if err != nil {
 		return err
 	}
 	// cmoli.es
 	cmoliPath := filepath.Join(getPathSoftware(), "cmoli.es", "src")
-	run("cp -r " + cmoliPath + "/* " + mdPath)
+	run("cp -r " + cmoliPath + "/* " + cfg.MdPath)
 	// check-iframe
 	checkIframePath := filepath.Join(getPathSoftware(), "checkIframe", "docs")
-	checkIframePathNew := filepath.Join(mdPath, "projects", "check-iframe")
+	checkIframePathNew := filepath.Join(cfg.MdPath, "projects", "check-iframe")
 	err = os.MkdirAll(checkIframePathNew, 0775)
 	run("cp -r " + checkIframePath + "/* " + checkIframePathNew)
 	// wiki
 	wikiPath := filepath.Join(getPathSoftware(), "wiki", "src")
-	wikiPathNew := filepath.Join(mdPath, "wiki")
+	wikiPathNew := filepath.Join(cfg.MdPath, "wiki")
 	err = os.Mkdir(wikiPathNew, 0775)
 	run("cp -r " + wikiPath + "/* " + wikiPathNew)
 	// tools
 	toolNames := [3]string{"open-urls", "job-check-lambda-name", "job-modify-issue-name"}
-	toolsPathNew := filepath.Join(mdPath, "tools")
+	toolsPathNew := filepath.Join(cfg.MdPath, "tools")
 	for i := range len(toolNames) {
 		toolRepo := toolNames[i]
 		toolPath := filepath.Join(getPathSoftware(), toolRepo)

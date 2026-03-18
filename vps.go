@@ -1,5 +1,5 @@
 package main
 
 func sendToVps() {
-	run("rsync -az --delete " + mdPath + "/ " + vpsAlias + ":" + vpsDestPath)
+	run("rsync -az --delete " + cfg.MdPath + "/ " + cfg.VpsAlias + ":" + cfg.VpsDestPath)
 }

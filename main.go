@@ -43,7 +43,7 @@ func showHelp() {
 
 func testLocal() {
 	createContent()
-	run("firefox " + filepath.Join(mdPath, "index.html"))
+	run("firefox " + filepath.Join(cfg.MdPath, "index.html"))
 }
 
 func deploy() {

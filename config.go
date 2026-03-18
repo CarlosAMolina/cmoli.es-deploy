@@ -6,13 +6,7 @@ import (
 	"path/filepath"
 )
 
-var (
-	cfg              = loadDeployConfig()
-	mdPath           = cfg.MdPath
-	vpsAlias         = cfg.VpsAlias
-	vpsDestPath      = cfg.VpsDestPath
-	mediaContentPath = cfg.MediaContentPath
-)
+var cfg = loadDeployConfig()
 
 type deployConfig struct {
 	MdPath           string `json:"md_path"`
