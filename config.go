@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"os"
 	"path/filepath"
+	"strings"
 )
 
 var cfg = loadDeployConfig()
@@ -25,8 +26,8 @@ func loadDeployConfig() deployConfig {
 	if err := json.Unmarshal(data, &config); err != nil {
 		panic(err)
 	}
-	config.MediaContentPath = os.ExpandEnv(config.MediaContentPath)
+	config.MediaContentPath = os.ExpandEnv(strings.ReplaceAll(config.MediaContentPath, "~", "$HOME"))
 	config.WebContentPath = os.ExpandEnv(config.WebContentPath)
-	config.VpsDestPath = os.ExpandEnv(config.VpsDestPath)
+	config.VpsDestPath = config.VpsDestPath
 	return config
 }
