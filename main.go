@@ -55,7 +55,7 @@ func deploy() {
 func createContent() {
 	err := prepareMdContentToConvert()
 	exitIfError(err)
-	convertMdToHtml()
+	convertMdToHtml(cfg.MdPath)
 	err = modifyHtml()
 	exitIfError(err)
 	err = setMedia()

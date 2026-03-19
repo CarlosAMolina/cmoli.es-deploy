@@ -42,7 +42,7 @@ func prepareMdContentToConvert() error {
 	return nil
 }
 
-func convertMdToHtml() {
+func convertMdToHtml(mdPath string) {
 	path := filepath.Join(getPathSoftware(), "md-to-html-go")
-	run("cd " + path + " && go run . " + filepath.Join(getCurrentPath(), "config-md-to-html.json"))
+	run("cd " + path + " && go run . " + mdPath)
 }
