@@ -26,6 +26,7 @@ The `cmoli-media-content` folder must use the same paths as the markdown web fil
 
 - [Git](https://git-scm.com/).
 - [Go](https://go.dev/).
+- rsync. Installation example: `sudo apt install rsync`.
 
 ```bash
 make run
