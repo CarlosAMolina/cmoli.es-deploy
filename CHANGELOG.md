@@ -1,7 +1,6 @@
 ## [1.2.0] - TODO
 
 TODO: git tag -a 1.2.0 -m "Replace Pandoc Docker with the Go project md-to-html-go"
-TODO. i've changed modifyHtml, check the result is the expected one
 
 ### Added
 

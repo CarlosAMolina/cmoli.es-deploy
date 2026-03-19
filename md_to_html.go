@@ -1,11 +1,13 @@
 package main
 
 import (
+	"fmt"
 	"os"
 	"path/filepath"
 )
 
 func prepareMdContentToConvert() error {
+	fmt.Println("Removing " + cfg.WebContentPath)
 	err := os.RemoveAll(cfg.WebContentPath)
 	if err != nil {
 		return err
