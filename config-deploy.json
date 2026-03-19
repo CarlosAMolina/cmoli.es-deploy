@@ -1,6 +1,6 @@
 {
-  "md_path": "/tmp/www",
+  "media_content_path": "~/Software/cmoli-media-content",
   "vps_alias": "TODO",
   "vps_dest_path": "~/Software/www/",
-  "media_content_path": "~/Software/cmoli-media-content"
+  "web_content_path": "/tmp/www"
 }

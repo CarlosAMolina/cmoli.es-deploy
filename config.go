@@ -9,7 +9,7 @@ import (
 var cfg = loadDeployConfig()
 
 type deployConfig struct {
-	MdPath           string `json:"md_path"`
+	MdPath           string `json:"web_content_path"`
 	VpsAlias         string `json:"vps_alias"`
 	VpsDestPath      string `json:"vps_dest_path"`
 	MediaContentPath string `json:"media_content_path"`
