@@ -6,7 +6,7 @@
 
 ### Core Workflow
 1. **Pull Git repositories** - Fetches latest from multiple source repos (cmoli.es, checkIframe, wiki, tools)
-2. **Prepare content** - Consolidates markdown/assets from various repos into a staging directory (`cfg.MdPath`, default `/tmp/www`)
+2. **Prepare content** - Consolidates markdown/assets from various repos into a staging directory (`cfg.WebContentPath`, default `/tmp/www`)
 3. **Convert markdown to HTML** - Delegates to the external Go project `md-to-html-go` using a separate config file
 4. **Post-process HTML** - Applies specific modifications (e.g., CSS classes) to generated HTML
 5. **Create media symlinks** - Links media files from `cmoli-media-content` to match markdown structure
@@ -45,7 +45,7 @@ All code is in the `main` package. Each responsibility is split across files:
 ## Key Conventions
 
 ### Global Configuration
-The `cfg` variable (of type `deployConfig`) is loaded at package init and used throughout. Always reference `cfg.MdPath`, `cfg.VpsAlias`, etc. rather than hardcoding paths.
+The `cfg` variable (of type `deployConfig`) is loaded at package init and used throughout. Always reference `cfg.WebContentPath`, `cfg.VpsAlias`, etc. rather than hardcoding paths.
 
 ### Repository Dependencies
 The tool manages multiple repositories in `~/Software/`:
@@ -58,7 +58,7 @@ The tool manages multiple repositories in `~/Software/`:
 These are pulled via `git pull` (if exist) or cloned fresh (if not). Updates to repo URLs must be made in `git.go`.
 
 ### Media Symlinks
-The `setMedia()` function creates symlinks recursively from `cfg.MediaContentPath` to mirror the structure in `cfg.MdPath`. Source and destination paths must match for symlinks to resolve correctly. See README for setup requirements.
+The `setMedia()` function creates symlinks recursively from `cfg.MediaContentPath` to mirror the structure in `cfg.WebContentPath`. Source and destination paths must match for symlinks to resolve correctly. See README for setup requirements.
 
 ### HTML Post-Processing
 Currently only modifies one specific file: `projects/rust-vs-other-languages/02-results-summary.html` (adds CSS class to `<table>`). Use `modify_html.go` for additional post-conversion tweaks; avoid editing the HTML post-generation in other workflows.

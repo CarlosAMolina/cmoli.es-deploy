@@ -32,7 +32,7 @@ func exists(dirPath string) bool {
 }
 
 func setMedia() error {
-	return createSymlinksRecursive(cfg.MediaContentPath, cfg.MdPath)
+	return createSymlinksRecursive(cfg.MediaContentPath, cfg.WebContentPath)
 }
 
 func createSymlinksRecursive(srcRoot, dstRoot string) error {

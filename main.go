@@ -43,7 +43,7 @@ func showHelp() {
 
 func testLocal() {
 	createContent()
-	run("firefox " + filepath.Join(cfg.MdPath, "index.html"))
+	run("firefox " + filepath.Join(cfg.WebContentPath, "index.html"))
 }
 
 func deploy() {
@@ -55,7 +55,7 @@ func deploy() {
 func createContent() {
 	err := prepareMdContentToConvert()
 	exitIfError(err)
-	convertMdToHtml(cfg.MdPath)
+	convertMdToHtml(cfg.WebContentPath)
 	err = modifyHtml()
 	exitIfError(err)
 	err = setMedia()

@@ -6,7 +6,7 @@ import (
 )
 
 func modifyHtml() error {
-	path := cfg.MdPath + "/projects/rust-vs-other-languages/02-results-summary.html"
+	path := cfg.WebContentPath + "/projects/rust-vs-other-languages/02-results-summary.html"
 	content, err := os.ReadFile(path)
 	if err != nil {
 		return err
