@@ -16,7 +16,7 @@ type deployConfig struct {
 }
 
 func loadDeployConfig() deployConfig {
-	configPath := filepath.Join(getCurrentPath(), "config-deploy.json")
+	configPath := filepath.Join(getCurrentPath(), "config.json")
 	data, err := os.ReadFile(configPath)
 	if err != nil {
 		panic(err)
@@ -25,5 +25,8 @@ func loadDeployConfig() deployConfig {
 	if err := json.Unmarshal(data, &config); err != nil {
 		panic(err)
 	}
+	config.MediaContentPath = os.ExpandEnv(config.MediaContentPath)
+	config.WebContentPath = os.ExpandEnv(config.WebContentPath)
+	config.VpsDestPath = os.ExpandEnv(config.VpsDestPath)
 	return config
 }

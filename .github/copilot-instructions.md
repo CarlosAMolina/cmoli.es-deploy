@@ -7,9 +7,9 @@
 ### Core Workflow
 1. **Pull Git repositories** - Fetches latest from multiple source repos (cmoli.es, checkIframe, wiki, tools)
 2. **Prepare content** - Consolidates markdown/assets from various repos into a staging directory (`cfg.WebContentPath`, default `/tmp/www`)
-3. **Convert markdown to HTML** - Delegates to the external Go project `md-to-html-go` using a separate config file
+3. **Convert markdown to HTML** - Delegates to the external Go project `md-to-html-go` by passing `cfg.WebContentPath` as the target directory
 4. **Post-process HTML** - Applies specific modifications (e.g., CSS classes) to generated HTML
-5. **Create media symlinks** - Links media files from `cmoli-media-content` to match markdown structure
+5. **Create media symlinks** - Links media files from `cfg.MediaContentPath` to match markdown structure
 6. **Send to VPS** - Syncs content to VPS using rsync
 
 ### Build & Run
@@ -40,7 +40,8 @@ All code is in the `main` package. Each responsibility is split across files:
 
 ### Configuration
 - **`config-deploy.json`** - Deployment paths (staging, VPS destination, media content location)
-- **`config-md-to-html.json`** - Passed to `md-to-html-go` for markdown conversion settings
+
+Note: `config-md-to-html.json` is no longer used. The md-to-html converter is now invoked with the `cfg.WebContentPath` directory as argument (from `config.json`).
 
 ## Key Conventions
 

@@ -11,6 +11,11 @@ Project to automate the creation of the [cmoli.es](https://cmoli.es) website con
 
 ## Configuration
 
+### VPS connection
+
+- Configure in your local pc the `~/.ssh/config` file with the VPS information.
+- Set the host name in `~/.ssh/config` as the key `vps_alias` in the `config.json` file.
+
 ### Media content
 
 Multimedia content (images, videos, etc.) must be located in the `$HOME/Software/cmoli-media-content` folder on both the computer where the web content will be generated and the VPS server from which that content will be served. Otherwise, the symbolic links generated will not work.
