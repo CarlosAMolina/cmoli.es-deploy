@@ -1,17 +1,16 @@
-## [1.2.0] - TODO
-
-TODO: git tag -a 1.2.0 -m "Replace Pandoc Docker with the Go project md-to-html-go"
+## [1.2.0] - 20260320
 
 ### Added
 
 - Send files to the VPS.
+- New local test where git pull is omitted.
 
 ### Changed
 
 - Convert md to html. Replace Pandoc Docker with the Go project [md-to-html-go](https://github.com/CarlosAMolina/md-to-html-go).
 - Menu order.
-- Test local. Omit git pull.
 - Media. Create symlinks instead of copy media.
+- Change paths where the information is stored.
 
 ### Removed
 
