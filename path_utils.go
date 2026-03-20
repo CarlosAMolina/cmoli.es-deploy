@@ -31,7 +31,7 @@ func exists(dirPath string) bool {
 	}
 }
 
-func setMedia() error {
+func setMedia(cfg deployConfig) error {
 	return createSymlinksRecursive(cfg.MediaContentPath, cfg.WebContentPath)
 }
 

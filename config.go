@@ -7,8 +7,6 @@ import (
 	"strings"
 )
 
-var cfg = loadDeployConfig()
-
 type deployConfig struct {
 	MediaContentPath string `json:"media_content_path"`
 	VpsAlias         string `json:"vps_alias"`
@@ -16,7 +14,8 @@ type deployConfig struct {
 	WebContentPath   string `json:"web_content_path"`
 }
 
-func loadDeployConfig() deployConfig {
+
+func newConfig() deployConfig {
 	configPath := filepath.Join(getCurrentPath(), "config.json")
 	data, err := os.ReadFile(configPath)
 	if err != nil {

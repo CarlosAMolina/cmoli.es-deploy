@@ -6,7 +6,7 @@ import (
 	"path/filepath"
 )
 
-func prepareMdContentToConvert() error {
+func prepareMdContentToConvert(cfg deployConfig) error {
 	fmt.Println("Removing " + cfg.WebContentPath)
 	err := os.RemoveAll(cfg.WebContentPath)
 	if err != nil {

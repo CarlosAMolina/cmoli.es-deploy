@@ -47,7 +47,8 @@ func showHelp() {
 }
 
 func testLocal() {
-	createContent()
+	cfg := newConfig()
+	createContent(cfg)
 	run("firefox " + filepath.Join(cfg.WebContentPath, "index.html"))
 }
 
@@ -56,18 +57,19 @@ func deploy(mustPull bool) {
 	if mustPull {
 		pullGitRepos()
 	}
-	createContent()
-	sendToVps()
+	cfg := newConfig()
+	createContent(cfg)
+	sendToVps(cfg)
 	fmt.Println("Deployed! :)")
 }
 
-func createContent() {
-	err := prepareMdContentToConvert()
+func createContent(cfg deployConfig) {
+	err := prepareMdContentToConvert(cfg)
 	exitIfError(err)
 	convertMdToHtml(cfg.WebContentPath)
-	err = modifyHtml()
+	err = modifyHtml(cfg)
 	exitIfError(err)
-	err = setMedia()
+	err = setMedia(cfg)
 	exitIfError(err)
 }
 
