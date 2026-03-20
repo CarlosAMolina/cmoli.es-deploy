@@ -1,5 +1,5 @@
 package main
 
 func sendToVps(cfg deployConfig) {
-	run("rsync -az --delete " + cfg.WebContentPath + "/ " + cfg.VpsAlias + ":" + cfg.VpsDestPath)
+	run("rsync -az --delete " + cfg.WebPath + "/ " + cfg.VpsAlias + ":" + cfg.WebPath)
 }

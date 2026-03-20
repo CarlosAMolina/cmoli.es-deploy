@@ -31,29 +31,48 @@ func exists(dirPath string) bool {
 	}
 }
 
-func setMedia(cfg deployConfig) error {
-	return createSymlinksRecursive(cfg.MediaContentPath, cfg.WebContentPath)
+func removeContents(path string) error {
+	entries, err := os.ReadDir(path)
+	if err != nil {
+		return err
+	}
+	for _, entry := range entries {
+		fullPath := filepath.Join(path, entry.Name())
+		if entry.IsDir() {
+			if err := removeContents(fullPath); err != nil {
+				return err
+			}
+			if err := os.Remove(fullPath); err != nil {
+				return err
+			}
+		} else {
+			if err := os.Remove(fullPath); err != nil {
+				return err
+			}
+		}
+	}
+	return nil
 }
 
-func createSymlinksRecursive(srcRoot, dstRoot string) error {
-	return filepath.Walk(srcRoot, func(srcPath string, info os.FileInfo, err error) error {
+func setMedia(cfg deployConfig) error {
+	return filepath.Walk(cfg.MediaPath, func(srcPath string, info os.FileInfo, err error) error {
 		if err != nil {
-			fmt.Printf("walk error: srcRoot=%s srcPath=%s err=%v\n", srcRoot, srcPath, err)
+			fmt.Printf("walk error: srcRoot=%s srcPath=%s err=%v\n", cfg.MediaPath, srcPath, err)
 			return err
 		}
 		if info == nil {
-			fmt.Printf("walk nil info: srcRoot=%s srcPath=%s\n", srcRoot, srcPath)
+			fmt.Printf("walk nil info: srcRoot=%s srcPath=%s\n", cfg.MediaPath, srcPath)
 			return nil
 		}
 		if info.IsDir() {
 			return nil
 		}
-		relPath, err := filepath.Rel(srcRoot, srcPath)
+		relPath, err := filepath.Rel(cfg.MediaPath, srcPath)
 		if err != nil {
-			fmt.Printf("rel error: srcRoot=%s srcPath=%s err=%v\n", srcRoot, srcPath, err)
+			fmt.Printf("rel error: srcRoot=%s srcPath=%s err=%v\n", cfg.MediaPath, srcPath, err)
 			return err
 		}
-		dstPath := filepath.Join(dstRoot, relPath)
+		dstPath := filepath.Join(cfg.WebPath, relPath)
 		fmt.Printf("symlink %s -> %s\n", srcPath, dstPath)
 		return os.Symlink(srcPath, dstPath)
 	})

@@ -1,6 +1,5 @@
 {
-  "media_content_path": "~/Software/cmoli-media-content",
+  "media_path": "/var/www/cmoli.es-media",
   "vps_alias": "TODO",
-  "vps_dest_path": "~/Software/web-server/www/",
-  "web_content_path": "/tmp/www"
+  "web_path": "/var/www/cmoli.es"
 }
