@@ -14,7 +14,7 @@ func prepareMdContentToConvert(cfg deployConfig) error {
 	}
 	// cmoli.es
 	cmoliPath := filepath.Join(getPathSoftware(), "cmoli.es", "src")
-	run("cp -r " + cmoliPath + "/. " + cfg.WebPath)  // `/.` the dot allows to copy hidden directories, required for `.well-known`.
+	run("cp -r " + cmoliPath + "/. " + cfg.WebPath)  // `/.` the dot allows to copy hidden directories, for example: `.well-known`.
 	// check-iframe
 	checkIframePath := filepath.Join(getPathSoftware(), "checkIframe", "docs")
 	checkIframePathNew := filepath.Join(cfg.WebPath, "projects", "check-iframe")
