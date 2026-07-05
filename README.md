@@ -24,6 +24,8 @@ We need to create and configure the following paths in:
 - The computer that will run this script to create the web content.
 - The VPS where the web content will be sent.
 
+Note. In the following examples, you don't have to use the `nonroot` user, you can use your current user.
+
 ```
 # HTML
 sudo mkdir -p /var/www/cmoli.es
