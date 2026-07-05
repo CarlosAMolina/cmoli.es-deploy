@@ -42,5 +42,5 @@ func prepareMdContentToConvert(cfg deployConfig) error {
 
 func convertMdToHtml(mdPath string) {
 	path := filepath.Join(getPathSoftware(), "md-to-html-go")
-	run("cd " + path + " && go run . " + mdPath)
+	run("cd " + path + " && go run . --embed-images " + mdPath)
 }
