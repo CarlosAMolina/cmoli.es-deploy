@@ -66,10 +66,10 @@ func deploy(mustPull bool) {
 func createContent(cfg deployConfig) {
 	err := prepareMdContentToConvert(cfg)
 	exitIfError(err)
+	err = setMedia(cfg)
+	exitIfError(err)
 	convertMdToHtml(cfg.WebPath)
 	err = modifyHtml(cfg)
-	exitIfError(err)
-	err = setMedia(cfg)
 	exitIfError(err)
 }
 
