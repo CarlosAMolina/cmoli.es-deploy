@@ -73,7 +73,34 @@ func setMedia(cfg deployConfig) error {
 			return err
 		}
 		dstPath := filepath.Join(cfg.WebPath, relPath)
-		fmt.Printf("symlink %s -> %s\n", srcPath, dstPath)
+		fmt.Printf("symlink created: %s -> %s\n", srcPath, dstPath)
 		return os.Symlink(srcPath, dstPath)
+	})
+}
+
+func removeMedia(cfg deployConfig) error {
+	return filepath.Walk(cfg.MediaPath, func(srcPath string, info os.FileInfo, err error) error {
+		if err != nil {
+			fmt.Printf("walk error: srcRoot=%s srcPath=%s err=%v\n", cfg.MediaPath, srcPath, err)
+			return err
+		}
+		if info == nil {
+			fmt.Printf("walk nil info: srcRoot=%s srcPath=%s\n", cfg.MediaPath, srcPath)
+			return nil
+		}
+		if info.IsDir() {
+			return nil
+		}
+		if filepath.Base(srcPath) == "favicon.ico" {
+			return nil
+		}
+		relPath, err := filepath.Rel(cfg.MediaPath, srcPath)
+		if err != nil {
+			fmt.Printf("rel error: srcRoot=%s srcPath=%s err=%v\n", cfg.MediaPath, srcPath, err)
+			return err
+		}
+		dstPath := filepath.Join(cfg.WebPath, relPath)
+		fmt.Printf("symlink removed: %s\n", dstPath)
+		return os.Remove(dstPath)
 	})
 }

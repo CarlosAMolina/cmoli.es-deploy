@@ -69,6 +69,8 @@ func createContent(cfg deployConfig) {
 	err = setMedia(cfg)
 	exitIfError(err)
 	convertMdToHtml(cfg.WebPath)
+	err = removeMedia(cfg)  // Only when using embeded images.
+	exitIfError(err)
 	err = modifyHtml(cfg)
 	exitIfError(err)
 }
