@@ -93,6 +93,7 @@ func setMedia(cfg deployConfig) error {
 	})
 }
 
+// TODO improve, modity to only remove symlinks, rename to removeSymlinks and drop if condition of favicon.ico
 func removeMedia(cfg deployConfig) error {
 	return filepath.Walk(cfg.MediaPath, func(srcPath string, info os.FileInfo, err error) error {
 		if err != nil {
