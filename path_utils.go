@@ -73,8 +73,23 @@ func setMedia(cfg deployConfig) error {
 			return err
 		}
 		dstPath := filepath.Join(cfg.WebPath, relPath)
-		fmt.Printf("symlink created: %s -> %s\n", srcPath, dstPath)
-		return os.Symlink(srcPath, dstPath)
+		if filepath.Base(srcPath) == "favicon.ico" {
+			data, err := os.ReadFile(srcPath)
+			if err != nil {
+				fmt.Printf("read error: srcPath=%s err=%v\n", srcPath, err)
+				return err
+			}
+			err = os.WriteFile(dstPath, data, info.Mode())
+			if err != nil {
+				fmt.Printf("write error: dstPath=%s err=%v\n", dstPath, err)
+				return err
+			}
+			fmt.Printf("favicon copied: %s -> %s\n", srcPath, dstPath)
+			return nil
+		} else {
+			fmt.Printf("symlink created: %s -> %s\n", srcPath, dstPath)
+			return os.Symlink(srcPath, dstPath)
+		}
 	})
 }
 
